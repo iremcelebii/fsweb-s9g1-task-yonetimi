@@ -5,13 +5,18 @@ import TaskForm from "./TaskForm";
 import TaskHookForm from "./TaskHookForm";
 import PeopleForm from "./PeopleForm";
 import { initialTasks, initialTeam } from "./data";
+import React from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
+  const notify1 = () => toast("Görev Tamamlandı!");
+  const notify2 = () => toast("Görev Eklendi!");
   const [tasks, setTasks] = useState(initialTasks);
   const [team, setTeam] = useState(initialTeam);
 
   function handleTaskSubmit(yeniTask) {
     setTasks([yeniTask, ...tasks]);
+    notify2();
   }
 
   function handlePeopleSubmit(yeniKisi) {
@@ -30,6 +35,7 @@ function App() {
     // console.log("birlestir");
     // console.log(birlestir);
     setTasks(birlestir);
+    notify1();
   }
 
   return (
@@ -39,6 +45,7 @@ function App() {
           <h2>Yeni Task</h2>
           {/* <TaskForm kisiler={team} submitFn={handleTaskSubmit} /> */}
           <TaskHookForm kisiler={team} submitFn={handleTaskSubmit} />
+          <ToastContainer />
         </div>
 
         <div className="form-container">

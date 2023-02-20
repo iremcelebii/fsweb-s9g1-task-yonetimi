@@ -1,5 +1,5 @@
-import React from "react";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 const Task = ({ taskObj, onComplete }) => {
   return (
     <div className="task">
@@ -7,10 +7,15 @@ const Task = ({ taskObj, onComplete }) => {
       <p>{taskObj.description}</p>
       <div>
         {taskObj.people.map((p) => (
-          <span className="pill" key={p}>{p}</span>
+          <span className="pill" key={p}>
+            {p}
+          </span>
         ))}
       </div>
-      {onComplete && <button onClick={() => onComplete(taskObj.id)}>Tamamlandı</button>}
+      {onComplete && (
+        <button onClick={() => onComplete(taskObj.id)}>Tamamlandı</button>
+      )}
+      <ToastContainer />
     </div>
   );
 };
